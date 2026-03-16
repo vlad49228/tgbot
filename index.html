@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha Crypt</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div class="app">
+
+        <!-- Топ-бар -->
+        <div class="topbar">
+            <div class="brand">
+                <span class="brand-name">ALPHA CRYPT</span>
+                <span class="live-badge"><span class="live-dot"></span>Live</span>
+            </div>
+            <div class="topbar-right">
+                <span class="currency-btn">USD</span>
+                <span class="menu-icon" id="menuBtn">⋮</span>
+            </div>
+        </div>
+
+        <!-- Тикер -->
+        <div class="ticker-wrap">
+            <div class="ticker-track" id="ticker">
+                <span class="tick pos">BTC <b id="tick-BTC">$84,200</b> <em>+2.30%</em></span>
+                <span class="tick neg">ETH <b id="tick-ETH">$2,072</b> <em>-1.25%</em></span>
+                <span class="tick pos">TON <b id="tick-TON">$1.33</b> <em>+1.52%</em></span>
+                <span class="tick pos">USDT <b>$1.00</b> <em>+0.10%</em></span>
+                <span class="tick pos">BTC <b>$84,200</b> <em>+2.30%</em></span>
+                <span class="tick neg">ETH <b>$2,072</b> <em>-1.25%</em></span>
+                <span class="tick pos">TON <b>$1.33</b> <em>+1.52%</em></span>
+                <span class="tick pos">USDT <b>$1.00</b> <em>+0.10%</em></span>
+            </div>
+        </div>
+
+        <!-- Кошелёк -->
+        <div class="wallet-section">
+            <div class="wallet-label-row">
+                <span class="wallet-dot"></span>
+                <span class="wallet-label">Main Wallet</span>
+                <span class="wallet-addr" id="walletAddr">0x000...0000</span>
+                <button class="copy-btn" id="copyBtn">⧉</button>
+            </div>
+        </div>
+
+        <!-- Баланс -->
+        <div class="balance-section">
+            <div class="balance-sub">TOTAL BALANCE</div>
+            <div class="balance-main" id="total-balance">Loading...</div>
+            <div class="balance-meta">
+                <span class="balance-btc" id="balance-meta-btc">0 BTC</span>
+                <span class="balance-chip positive" id="balance-chip">+0.00%</span>
+                <span class="balance-period">24H</span>
+            </div>
+        </div>
+
+        <!-- Кнопки -->
+        <div class="actions">
+            <button class="action-btn" id="transferBtn">
+                <span class="action-icon">↑</span>
+                <span class="action-label">Send</span>
+            </button>
+            <button class="action-btn" id="depositBtn">
+                <span class="action-icon">↓</span>
+                <span class="action-label">Receive</span>
+            </button>
+            <button class="action-btn" id="withdrawBtn">
+                <span class="action-icon">$</span>
+                <span class="action-label">Withdraw</span>
+            </button>
+            <button class="action-btn" id="exchangeBtn">
+                <span class="action-icon">⇄</span>
+                <span class="action-label">Swap</span>
+            </button>
+        </div>
+
+        <!-- Активы -->
+        <div class="assets-section">
+            <div class="section-header">
+                <span class="section-title">Assets</span>
+                <span class="section-link history-link">Market →</span>
+            </div>
+
+            <div class="asset-list">
+                <div class="asset-item" data-crypto="BTC">
+                    <div class="asset-icon btc"><img src="https://assets.coingecko.com/coins/images/1/small/bitcoin.png" alt="BTC" style="width:24px;height:24px;border-radius:50%;object-fit:cover;"></div>
+                    <div class="asset-info">
+                        <span class="asset-name">Bitcoin</span>
+                        <span class="asset-sub" id="balance-BTC">0 BTC</span>
+                    </div>
+                    <div class="asset-spark"><canvas class="spark-canvas" id="spark-BTC" width="72" height="32"></canvas></div>
+                    <div class="asset-price-info">
+                        <span class="asset-price" id="price-BTC">$84,200</span>
+                        <span class="asset-change positive" id="change-BTC">—</span>
+                    </div>
+                </div>
+
+                <div class="asset-item" data-crypto="ETH">
+                    <div class="asset-icon eth"><img src="https://assets.coingecko.com/coins/images/279/small/ethereum.png" alt="ETH" style="width:24px;height:24px;border-radius:50%;object-fit:cover;"></div>
+                    <div class="asset-info">
+                        <span class="asset-name">Ethereum</span>
+                        <span class="asset-sub" id="balance-ETH">0 ETH</span>
+                    </div>
+                    <div class="asset-spark"><canvas class="spark-canvas" id="spark-ETH" width="72" height="32"></canvas></div>
+                    <div class="asset-price-info">
+                        <span class="asset-price" id="price-ETH">$2,072</span>
+                        <span class="asset-change negative" id="change-ETH">-1.80%</span>
+                    </div>
+                </div>
+
+                <div class="asset-item" data-crypto="TON">
+                    <div class="asset-icon ton"><img src="https://assets.coingecko.com/coins/images/17980/small/ton_symbol.png" alt="TON" style="width:24px;height:24px;border-radius:50%;object-fit:cover;"></div>
+                    <div class="asset-info">
+                        <span class="asset-name">Toncoin</span>
+                        <span class="asset-sub" id="balance-TON">0 TON</span>
+                    </div>
+                    <div class="asset-spark"><canvas class="spark-canvas" id="spark-TON" width="72" height="32"></canvas></div>
+                    <div class="asset-price-info">
+                        <span class="asset-price" id="price-TON">$1.33</span>
+                        <span class="asset-change positive" id="change-TON">—</span>
+                    </div>
+                </div>
+
+                <div class="asset-item" data-crypto="USDT">
+                    <div class="asset-icon usdt"><img src="https://assets.coingecko.com/coins/images/325/small/Tether.png" alt="USDT" style="width:24px;height:24px;border-radius:50%;object-fit:cover;"></div>
+                    <div class="asset-info">
+                        <span class="asset-name">Tether</span>
+                        <span class="asset-sub" id="balance-USDT">0 USDT</span>
+                    </div>
+                    <div class="asset-spark"><canvas class="spark-canvas" id="spark-USDT" width="72" height="32"></canvas></div>
+                    <div class="asset-price-info">
+                        <span class="asset-price" id="price-USDT">$1.00</span>
+                        <span class="asset-change positive" id="change-USDT">—</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Нижняя навигация -->
+    <div class="bottom-nav">
+        <button class="nav-item active" data-page="wallet">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+            <span>Wallet</span>
+        </button>
+        <button class="nav-item" data-page="trade">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            <span>Market</span>
+        </button>
+        <button class="nav-item" data-page="bonuses">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+            <span>Swap</span>
+        </button>
+        <button class="nav-item" data-page="history">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>History</span>
+        </button>
+        <button class="nav-item" data-page="profile">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>Profile</span>
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
